@@ -1,0 +1,5 @@
+export const ADD_BOX = 'ADD_BOX'
+export const DELETE_BOX = 'DELETE_BOX'
+export const CHANGE_CURRENT_BOX = 'CHANGE_CURRENT_BOX'
+export const CHANGE_COLOR = 'CHANGE_COLOR'
+export const REMOVE_CURRENT_BOX = 'REMOVE_CURRENT_BOX'

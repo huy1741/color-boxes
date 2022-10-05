@@ -1,0 +1,22 @@
+.header-content {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly ;
+  border-bottom-style:solid;
+  border-bottom-color: black;  
+  width: 100%;
+  padding-bottom: 150;
+  }
+.button {
+    width: 300;
+    border-radius: 35;
+    padding: 18px 36px;
+    font-size: 18px
+}
+.container {
+  margin-top: 50px;
+  display:flex;
+  flex-direction: column;
+  min-width: 400px;
+  align-items: center;
+  }
