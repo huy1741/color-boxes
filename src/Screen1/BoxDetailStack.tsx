@@ -24,9 +24,10 @@ export const BoxDetailStack : React.FC<Props> = ({changeCurrentBox, data, curren
             <Stack direction='row'  spacing={10} >
                 <Button style={buttonStyle} variant="outlined" onClick={() => !isEmpty(currentBox) ? addBox(Math.random(), currentBox.color) : data.length < 1 ? addBox(Math.random(), 'red') : null}>Add</Button>
                 <Button style={buttonStyle} variant="outlined" onClick={() => !isEmpty(currentBox) ? deleteBox(currentBox.id): data.length > 0 ? deleteBox(data[data.length- 1].id) : null}>Delete</Button>
+                <Button style={buttonStyle} variant="outlined" onClick={removeCurrentBox}>Unselect</Button>
             </Stack>
             <Grid container>
-                 {data.map((item) =><Grid key={item.id} xs={3}><BoxDetailsItem key={item.id} id={item.id} color={item.color} changeCurrentBox={changeCurrentBox} currentBox={currentBox} removeCurrentBox={removeCurrentBox}/></Grid>)}
+                 {data.map((item) =><Grid key={item.id} xs={3}><BoxDetailsItem key={item.id} id={item.id} color={item.color} changeCurrentBox={changeCurrentBox} currentBox={currentBox}/></Grid>)}
             </Grid>
             <h2>There are {data.length} boxes</h2>
          </div>
