@@ -5,12 +5,17 @@ import Stack from '@mui/material/Stack';
 import { isEmpty } from '../utils'
 interface Props{
     currentBox: BoxItem;
-    changeColor(id: number, color: string): void;
-    changeCurrentBox(id: number, color: string) : void;
+    changeColor(color: string): void;
+    singleColor: string;
+    removeCurrentBox() : void;  
 }
 
-export const BoxDescription : React.FC<Props> = ({ currentBox, changeColor, changeCurrentBox}) => {
-  const selected: Boolean = isEmpty(currentBox)
+export const BoxDescription : React.FC<Props> = ({ currentBox, changeColor, singleColor, removeCurrentBox}) => {
+  const isBoxEmpty: Boolean = isEmpty(currentBox)
+  const handleOnClick = (color: string) => {
+    changeColor(color)
+    removeCurrentBox()
+  }
   const buttonStyle = {
     width: 300,
     borderRadius: 35,
@@ -19,10 +24,11 @@ export const BoxDescription : React.FC<Props> = ({ currentBox, changeColor, chan
 }
   return <div className='container'>
             <Stack direction='row'  spacing={10} >
-                <Button style={buttonStyle} variant="outlined" onClick={() => selected ? null : (changeColor(currentBox.id, 'blue'), changeCurrentBox(currentBox.id, 'blue'))}>Blue</Button>
-                <Button style={buttonStyle} variant="outlined" onClick={() => selected ? null : (changeColor(currentBox.id, 'red'), changeCurrentBox(currentBox.id, 'red'))}>Red</Button>
+                <Button style={buttonStyle} variant="outlined" onClick={() => handleOnClick('blue')}>Blue</Button>
+                <Button style={buttonStyle} variant="outlined" onClick={() => handleOnClick('red')}>Red</Button>
             </Stack>
-            {selected === false && <Button style={{height: 200, width: 400, backgroundColor: currentBox.color, marginTop: 50, boxShadow: selected && '20px 20px 20px grey' }}/>}
-            {selected === false && <h2>The selected color is {currentBox.color}</h2>}
+            {isBoxEmpty === true && <Button style={{height: 200, width: 400, backgroundColor: singleColor, marginTop: 50}}/>}
+            {isBoxEmpty === false && <Button style={{height: 200, width: 400, backgroundColor: currentBox.color, marginTop: 50}}/>}
+            {isBoxEmpty === false ? <h2>The selected color is {currentBox.color}</h2> : <h2>The selected color is {singleColor}</h2>}
         </div>
 }

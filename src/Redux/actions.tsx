@@ -10,9 +10,9 @@ export const deleteBox = (id: number) => ({
   payload: { id }
 })
 
-export const changeColor = (id: number, color: string) => ({
+export const changeColor = ( color: string) => ({
   type: CHANGE_COLOR,
-  payload: { id, color }
+  payload: { color }
 })
 
 export const changeCurrentBox = (id: number, color: string) => ({

@@ -2,9 +2,10 @@
 import { ADD_BOX, DELETE_BOX, CHANGE_CURRENT_BOX, CHANGE_COLOR, REMOVE_CURRENT_BOX } from '../actionTypes'
 import { BoxItem } from '../../type'
 const startData: BoxItem[] = [{ id: Math.random(), color: 'red' }, { id: Math.random(), color: 'orange' }, { id: Math.random(), color: 'blue' }, { id: Math.random(), color: 'yellow' } , { id: Math.random(), color: 'yellow' }]
-const initialState : {list: BoxItem[], currentBox: BoxItem | {}} = {
+const initialState : {list: BoxItem[], currentBox: BoxItem | {}, singleColor: string } = {
   list: startData,
   currentBox: {},
+  singleColor: 'blue'
 }
 
 interface AddBoxAction {
@@ -24,7 +25,7 @@ interface ChangeCurrentBoxAction {
 
 interface ChangeColorAction {
   type: 'CHANGE_COLOR',
-  payload: {id: number, color: string}
+  payload: {color: string}
 }
 
 interface RemoveCurrentBoxAction {
@@ -44,6 +45,7 @@ export default function (state = initialState, action : Action) {
     case DELETE_BOX: {
       const { id } = action.payload
       return {
+        ...state,
         list: [...state.list.filter(item => item.id !== id)],
         currentBox: {}
       }
@@ -56,10 +58,10 @@ export default function (state = initialState, action : Action) {
       }
     }
     case CHANGE_COLOR: {
-      const { id, color } = action.payload
+      const { color } = action.payload
       return {
-        list: [...state.list.map(item => item.id === id ? { id, color } : item)],
-        currentBox: { id, color}
+        ...state,
+        singleColor: color
       }
     }
     case REMOVE_CURRENT_BOX: {

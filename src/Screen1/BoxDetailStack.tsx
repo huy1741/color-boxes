@@ -12,17 +12,19 @@ interface Props{
     addBox(id: number, color: string): void;
     deleteBox(id: number): void;
     removeCurrentBox() : void;
+    singleColor: string
 }
-export const BoxDetailStack : React.FC<Props> = ({changeCurrentBox, data, currentBox, addBox, deleteBox, removeCurrentBox}) => {
+export const BoxDetailStack : React.FC<Props> = ({changeCurrentBox, data, currentBox, addBox, deleteBox, removeCurrentBox, singleColor}) => {
     const buttonStyle = {
         width: 300,
         borderRadius: 35,
         padding: "18px 36px",
         fontSize: "18px"
     }
+    console.log(singleColor)
   return <div className='container'>
             <Stack direction='row'  spacing={10} >
-                <Button style={buttonStyle} variant="outlined" onClick={() => !isEmpty(currentBox) ? addBox(Math.random(), currentBox.color) : data.length < 1 ? addBox(Math.random(), 'red') : null}>Add</Button>
+                <Button style={buttonStyle} variant="outlined" onClick={() => addBox(Math.random(), singleColor)}>Add</Button>
                 <Button style={buttonStyle} variant="outlined" onClick={() => !isEmpty(currentBox) ? deleteBox(currentBox.id): data.length > 0 ? deleteBox(data[data.length- 1].id) : null}>Delete</Button>
                 <Button style={buttonStyle} variant="outlined" onClick={removeCurrentBox}>Unselect</Button>
             </Stack>

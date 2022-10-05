@@ -5,14 +5,14 @@ import { addBox, deleteBox, changeColor, changeCurrentBox, removeCurrentBox } fr
 import { HomeScreen } from './HomeScreen'
 import { BoxItem } from '../type'
 interface StateProps {
-  boxReducer: {list: BoxItem[], currentBox: BoxItem};
+  boxReducer: {list: BoxItem[], currentBox: BoxItem, singleColor: string};
 }
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
   return {
     // dispatching actions returned by action creators
     addBox: (id: number, color: string) => dispatch(addBox(id, color)),
     deleteBox: (id: number) => dispatch(deleteBox(id)),
-    changeColor: (id: number, color: string) => dispatch(changeColor(id, color)),
+    changeColor: (color: string) => dispatch(changeColor(color)),
     changeCurrentBox: (id: number, color: string) => dispatch(changeCurrentBox(id, color)),
     removeCurrentBox: () => dispatch(removeCurrentBox())
   }
@@ -20,9 +20,11 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
 const mapStateToProps = (state: StateProps ) => {
   const arr = state.boxReducer.list
   const currentBox = state.boxReducer.currentBox
+  const singleColor = state.boxReducer.singleColor
   return {
     data: arr,
-    currentBox
+    currentBox,
+    singleColor
   }
 }
 
