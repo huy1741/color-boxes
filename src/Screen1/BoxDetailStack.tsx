@@ -24,8 +24,8 @@ export const BoxDetailStack : React.FC<Props> = ({changeCurrentBox, data, curren
     console.log(singleColor)
   return <div className='container'>
             <Stack direction='row'  spacing={10} >
-                <Button style={buttonStyle} variant="outlined" onClick={() => addBox(Math.random(), singleColor)}>Add</Button>
-                <Button style={buttonStyle} variant="outlined" onClick={() => !isEmpty(currentBox) ? deleteBox(currentBox.id): data.length > 0 ? deleteBox(data[data.length- 1].id) : null}>Delete</Button>
+                <Button style={buttonStyle} variant="outlined" onClick={() => !isEmpty(currentBox) ? addBox(Math.random(), currentBox.color) : addBox(Math.random(), singleColor) }>Add</Button>
+                <Button style={buttonStyle} variant="outlined" onClick={() => !isEmpty(currentBox) ? deleteBox(currentBox.id): data.length > 0 ? deleteBox(data[data.length - 1].id) : null}>Delete</Button>
                 <Button style={buttonStyle} variant="outlined" onClick={removeCurrentBox}>Unselect</Button>
             </Stack>
             <Grid container>
